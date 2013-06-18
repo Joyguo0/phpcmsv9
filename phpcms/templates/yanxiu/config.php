@@ -1,10 +1,10 @@
 <?php return array (
-  'name' => '默认模板',
-  'author' => 'PHPCMS TEAM',
+  'name' => 'Yanxiu',
+  'author' => 'Joy',
   'dirname' => 'default',
   'homepage' => 'http://www.phpcms.cn/',
   'version' => '1.0',
-  'disable' => 1,
+  'disable' => 0,
   'file_explan' => 
   array (
     'templates|default|content' => 
