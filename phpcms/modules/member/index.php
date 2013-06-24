@@ -573,15 +573,19 @@ class index extends foreground {
 				$status = $this->client->ps_member_login($username, $password);
 				$memberinfo = unserialize($status);
 				
-				if(isset($memberinfo['uid'])) {
+				pc_base::load_app_class('yanxiu');
+				$yanxiu=new yanxiu();
+				$return_msg=$yanxiu->passport_check(array('username'=>$username,'pwd'=>$password));
+				//print_R($yanxiu_return_msg);die;
+				if($return_msg['flag']) {
 					//查询帐号
 					$r = $this->db->get_one(array('phpssouid'=>$memberinfo['uid']));
 					if(!$r) {
 						//插入会员详细信息，会员不存在 插入会员
 						$info = array(
 									'phpssouid'=>$memberinfo['uid'],
-						 			'username'=>$memberinfo['username'],
-						 			'password'=>$memberinfo['password'],
+						 			'username'=>$username,
+						 			'password'=>md5($password),
 						 			'encrypt'=>$memberinfo['random'],
 						 			'email'=>$memberinfo['email'],
 						 			'regip'=>$memberinfo['regip'],
