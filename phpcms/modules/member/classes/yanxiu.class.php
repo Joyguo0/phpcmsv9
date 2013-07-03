@@ -34,5 +34,4 @@ class yanxiu {
 		$result = curl_exec ( $ch );
 		return json_decode ( $result );
 	}
-
 }
